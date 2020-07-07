@@ -27,6 +27,10 @@ Event: {{ .EventString }}
 {{ range .EventServiceIDs }}
 * {{ . }}
 {{ end }}{{ end }}
+{{ if (gt (len .EventDeletedIDs) 0)}}Resources deleted:
+{{ range .EventDeletedIDs }}
+* {{ . }}
+{{ end }}{{ end }}
 {{ if gt (len .Errors) 0 }}Errors:
 {{ range .Errors }}
 Resource {{ .ID }}, file: {{ .Path }}:
@@ -50,6 +54,7 @@ type tplValues struct {
 	VCSLink            string
 	EventID            fluxevent.EventID
 	EventServiceIDs    []resource.ID
+	EventDeletedIDs    []resource.ID
 	EventChangedImages []string
 	EventResult        update.Result
 	EventType          string
@@ -133,6 +138,7 @@ func (d DefaultFormatter) FormatEvent(event fluxevent.Event, exporter exporters.
 		VCSLink:            d.vcsLink,
 		EventID:            event.ID,
 		EventServiceIDs:    event.ServiceIDs,
+		EventDeletedIDs:    event.DeletedWorkloadIDs,
 		EventChangedImages: getChangedImages(event.Metadata),
 		EventResult:        getResult(event.Metadata),
 		EventType:          event.Type,
