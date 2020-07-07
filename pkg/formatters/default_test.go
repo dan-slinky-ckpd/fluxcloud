@@ -76,7 +76,7 @@ func TestDefaultFormatterFormatSyncEvent(t *testing.T) {
 	assert.Equal(t, "https://github.com/commit/810c2e6f22ac5ab7c831fe0dd697fe32997b098f", msg.TitleLink)
 	assert.Equal(t, "Applied flux changes to cluster", msg.Title)
 	assert.Equal(t, fluxevent.EventSync, msg.Type)
-	assert.Equal(t, `Event: Sync: 810c2e6, default:deployment/test
+	assert.Equal(t, `Event: Sync: 810c2e6, updated: default:deployment/test, deleted: <no changes>
 Commits:
 
 * <https://github.com/commit/810c2e6f22ac5ab7c831fe0dd697fe32997b098f|810c2e6>: change test image
@@ -100,7 +100,7 @@ func TestDefaultFormatterFormatDeleteSyncEvent(t *testing.T) {
 	assert.Equal(t, "https://github.com/commit/c6b7c44b4300f92b788bbc9bb6cb7282852300b4", msg.TitleLink)
 	assert.Equal(t, "Applied flux changes to cluster", msg.Title)
 	assert.Equal(t, fluxevent.EventSync, msg.Type)
-	assert.Equal(t, `Event: Sync: c6b7c44, no workloads changed
+	assert.Equal(t, `Event: Sync: c6b7c44, updated: <no changes>, deleted: <no changes>
 Commits:
 
 * <https://github.com/commit/c6b7c44b4300f92b788bbc9bb6cb7282852300b4|c6b7c44>: deleted k8s-global-objects`, msg.Body)
@@ -190,7 +190,7 @@ func TestDefaultFormatterFormatUpdatePolicyEvent(t *testing.T) {
 	assert.Equal(t, "https://github.com/commit/d644e1a05db6881abf0cdb78299917b95f442036", msg.TitleLink)
 	assert.Equal(t, "Applied flux changes to cluster", msg.Title)
 	assert.Equal(t, fluxevent.EventSync, msg.Type)
-	assert.Equal(t, `Event: Sync: d644e1a, default:deployment/test
+	assert.Equal(t, `Event: Sync: d644e1a, updated: default:deployment/test, deleted: <no changes>
 Commits:
 
 * <https://github.com/commit/d644e1a05db6881abf0cdb78299917b95f442036|d644e1a>: Automated: default:deployment/test
@@ -214,7 +214,7 @@ func TestDefaultFormatterFormatSyncErrorEvent(t *testing.T) {
 	assert.Equal(t, "https://github.com/commit/4997efcd4ac6255604d0d44eeb7085c5b0eb9d48", msg.TitleLink)
 	assert.Equal(t, "Applied flux changes to cluster", msg.Title)
 	assert.Equal(t, fluxevent.EventSync, msg.Type)
-	assert.Equal(t, `Event: Sync: 4997efc, default:persistentvolumeclaim/test
+	assert.Equal(t, `Event: Sync: 4997efc, updated: default:persistentvolumeclaim/test, deleted: <no changes>
 Commits:
 
 * <https://github.com/commit/4997efcd4ac6255604d0d44eeb7085c5b0eb9d48|4997efc>: create invalid resource

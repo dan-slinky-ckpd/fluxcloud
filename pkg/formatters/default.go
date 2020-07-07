@@ -27,10 +27,10 @@ Event: {{ .EventString }}
 {{ range .EventServiceIDs }}
 * {{ . }}
 {{ end }}{{ end }}
-{{ if (gt (len .EventDeletedIDs) 0)}}Resources deleted:
+{{ if (gt (len .EventDeletedIDs) 0) }}Resources deleted:
 {{ range .EventDeletedIDs }}
 * {{ . }}
-{{ end }}{{ end }}
+{{ end }}{{ end -}}
 {{ if gt (len .Errors) 0 }}Errors:
 {{ range .Errors }}
 Resource {{ .ID }}, file: {{ .Path }}:
